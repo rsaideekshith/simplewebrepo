@@ -2,9 +2,8 @@ pipeline {
     agent any
 
     environment {
-  registry  = "019523160407.dkr.ecr.ap-south-1.amazonaws.com/mypythonweb"
+  registry  = "019523160407.dkr.ecr.ap-south-1.amazonaws.com/web"
 }
-
     stages {
         stage ('Checkout') {
             steps {
