@@ -4,7 +4,7 @@ pipeline {
   registry  = "019523160407.dkr.ecr.ap-south-1.amazonaws.com/simpleweb"
 }
 stages {
-    stage ('Checkout') {
+    stage ('Checkout') { 
         steps {
             checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'gitHUB', url: 'git@github.com:rsaideekshith/simplewebrepo.git']]])
 
