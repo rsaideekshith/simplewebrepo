@@ -4,19 +4,16 @@ phases:
     commands:
       - echo Logging in to Amazon ECR...
       - aws --version
-      - $(aws ecr get-login --registry-ids 406067944890 --no-include-email --region ap-south-1)
-      - REPOSITORY_URI=406067944890.dkr.ecr.ap-south-1.amazonaws.com/code-pipeline
-      - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
-      - IMAGE_TAG=BUILD-$(ECHO $CODEBUILD_BUILD_ID | awk -F":" '{print $2}')
+      - aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 019523160407.dkr.ecr.ap-south-1.amazonaws.com
    build:
     commands:
       - echo Building the Docker image...
-      - docker login -u srilekhak005 -p Dakshya@2020
-      - docker build -t $REPOSITORY_URI:latest .
-      - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
+      - docker login -u rsaideekshith123 -p pasnurUS123
+      - docker build -t secondweb .
+      - docker tag secondweb:latest 019523160407.dkr.ecr.ap-south-1.amazonaws.com/secondweb:latest
    post_build:
     commands:
       - echo Build completed on 'date'
       - echo pushing the docker images...
-      - docker push $REPOSITORY_URI:latest
+      - docker push 019523160407.dkr.ecr.ap-south-1.amazonaws.com/secondweb:latest
       - echo writting docker image defination file...
