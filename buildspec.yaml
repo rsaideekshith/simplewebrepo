@@ -1,29 +1,18 @@
 version: 0.2
 phases:
-  pre_build:
+   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
       - aws --version
-      - $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
-      - REPOSITORY_URI=019523160407.dkr.ecr.ap-south-1.amazonaws.com/secondweb
-      - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
-      - echo $COMMIT_HASH
-      - IMAGE_TAG=build-$(echo $CODEBUILD_BUILD_ID | awk -F":" '{print $2}')
-      - echo IMAGE_TAG
-  build:
+      - aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 019523160407.dkr.ecr.ap-south-1.amazonaws.com
+   build:
     commands:
-      - echo Build started on `date`
       - echo Building the Docker image...
-      - docker build -t $REPOSITORY_URI:latest .
-      - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
-  post_build:
+      - docker build -t secondweb .
+      - docker tag secondweb:latest 019523160407.dkr.ecr.ap-south-1.amazonaws.com/secondweb:latest
+   post_build:
     commands:
-      - echo Build completed on `date`
-      - echo Pushing the Docker images...
-      - docker push $REPOSITORY_URI:latest
-      - docker push $REPOSITORY_URI:$IMAGE_TAG
-      - echo Writing image definitions file...
-      - printf '[{"name":"dev-nginx","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
-      - cat imagedefinitions.json
-artifacts:
-  files: imagedefinitions.json
+      - echo Build completed on 'date'
+      - echo pushing the docker images...
+      - docker push 019523160407.dkr.ecr.ap-south-1.amazonaws.com/secondweb:latest
+      - echo writting docker image defination file...
