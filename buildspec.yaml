@@ -9,7 +9,7 @@ phases:
     commands:
       - echo Building the Docker image...
       - docker build -t secondweb .
-      - docker tag secondweb:latest 019523160407.dkr.ecr.ap-south-1.amazonaws.com/secondweb:latest
+      - docker tag secondweb:latest 019523160407.dkr.ecr.ap-south-1.amazonaws.com/secondweb:2.0
    post_build:
     commands:
       - echo Build completed on 'date'
