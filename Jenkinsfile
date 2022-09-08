@@ -16,6 +16,7 @@ agent any
             steps {
                 script {
                     sh 'docker build -t pythonweb .'
+                    sh 'docker tag pythonweb:latest 019523160407.dkr.ecr.ap-south-1.amazonaws.com/pythonweb:latest'
                 }
             }
         }
