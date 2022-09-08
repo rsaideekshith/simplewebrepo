@@ -9,7 +9,7 @@ agent any
     stages {
         stage ('Checkout') {
             steps {
-            checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'gitHUB', url: 'git@github.com:rsaideekshith/simplewebrepo.git']]])
+            git branch: 'main', credentialsId: 'github_key', url: 'https://github.com/rsaideekshith/simplewebrepo.git'
             }
         }
         stage ('Docker Build') {
