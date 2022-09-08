@@ -15,7 +15,7 @@ agent any
         stage ('Docker Build') {
             steps {
                 script {
-                    dockerImage = docker.build registry
+                    sh 'docker build -t mypythonweb:3.0 .
                 }
             }
         }
