@@ -15,7 +15,7 @@ agent any
         stage ('Docker Build') {
             steps {
                 script {
-                    sh 'docker build -t mypythonweb:3.0 .
+                    sh 'docker build -t mypythonweb:3.0 .'
                 }
             }
         }
