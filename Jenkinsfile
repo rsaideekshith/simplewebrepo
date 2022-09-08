@@ -22,7 +22,7 @@ agent any
         stage ('Docker Push') {
             steps {
                 script {
-                    sh 'aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 019523160407.dkr.ecr.ap-south-1.amazonaws.com'
+                    sh 'docker login -u AWS -p $(aws ecr get-login-password --region ap-south-1) 019523160407.dkr.ecr.ap-south-1.amazonaws.com'
                     sh 'docker push 019523160407.dkr.ecr.ap-south-1.amazonaws.com/mypythonweb:3.0'
                 }
             }
