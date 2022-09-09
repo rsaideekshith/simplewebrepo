@@ -16,7 +16,7 @@ agent any
             steps {
                 script {
                     sh 'docker build -t pythonweb .'
-                    sh 'docker tag pythonweb:latest 019523160407.dkr.ecr.ap-south-1.amazonaws.com/pythonweb:latest'
+                    sh 'docker tag pythonweb:latest 019523160407.dkr.ecr.ap-south-1.amazonaws.com/pythonweb:3.0'
                 }
             }
         }
@@ -24,7 +24,7 @@ agent any
             steps {
                 script {
                     sh 'docker login -u AWS -p $(aws ecr get-login-password --region ap-south-1) 019523160407.dkr.ecr.ap-south-1.amazonaws.com'
-                    sh 'docker push 019523160407.dkr.ecr.ap-south-1.amazonaws.com/pythonweb:latest'
+                    sh 'docker push 019523160407.dkr.ecr.ap-south-1.amazonaws.com/pythonweb:3.0'
                 }
             }
         }
