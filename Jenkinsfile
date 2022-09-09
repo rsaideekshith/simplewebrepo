@@ -34,7 +34,7 @@ agent any
 stage ('Deploy' ) {
     steps {
         script {
-             aws ecs update-service --service pythonapp --force-new-deployment --cluster pythonform --region ap-south-1
+             'aws ecs update-service --service pythonapp --force-new-deployment --cluster pythonform --region ap-south-1'
         }
     }
 }
