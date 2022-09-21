@@ -3,7 +3,12 @@ pipeline {
 agent any
 
     environment {
-  registry  = "019523160407.dkr.ecr.ap-south-1.amazonaws.com/pythonweb"
+
+        CLUSTER_NAME="pythonform"
+	SERVICE_NAME="pythonapp"
+	TASK_DEFINITION_NAME="pythonapp"
+	DESIRED_COUNT="2"
+        registry  = "019523160407.dkr.ecr.ap-south-1.amazonaws.com/pythonweb"
 }
 
     stages {
@@ -30,8 +35,7 @@ agent any
         }
          stage('Deploy') {
      steps{
-      
-                script {
+               script {
 			sh './script.sh'
                 }
             } 
