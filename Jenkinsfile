@@ -28,6 +28,18 @@ agent any
                 }
             }
         }
+         stage('Deploy') {
+     steps{
+      
+                script {
+			sh './script.sh'
+                }
+            } 
+        }
+      }      
+      
+    }
+}
     }
 }
 
